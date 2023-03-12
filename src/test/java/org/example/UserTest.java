@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+class UserTest extends lessonTest.LoginExeption {
     static String loginTrue = "frog167";
     static String emailTrue = "frog@mail.ru";
-    static String emailNoCorrect = "frog@mailru";
+    static String emailNoCorrect = "frogmail.ru";
 
     static String loginNoEquals = "frog@mail.ru";
 
@@ -39,14 +39,12 @@ class UserTest {
         user = new User(loginTrue, emailTrue);
         Assertions.assertTrue(user.getEmail().contains("@"));
         Assertions.assertTrue(user.getEmail().contains("."));
+        Assertions.assertThrows(lessonTest.LoginExeption.class,()->new User(loginTrue,emailNoCorrect));
     }
 
     @Test
-    void shouldEmailAndloginEquals() throws lessonTest.LoginExeption {
-        user = new User(loginTrue, emailTrue);
-        Assertions.assertNotEquals(user.getEmail(),user.getLogin());
-        Assertions.assertTrue(user.getLogin().contains(loginTrue));
-        Assertions.assertTrue(user.getEmail().contains(emailTrue));
+    void shouldEmailAndloginEquals(){
+        Assertions.assertThrows(lessonTest.LoginExeption.class,()->new User(loginNoEquals, mailNoEquals));
     }
 
 

@@ -1,5 +1,7 @@
 package org.example;
 
+import lessonTest.LoginExeption;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,12 +35,12 @@ public class User {
         } else return null;
     }
 
-    public String getEmailIn(String strEmail) {
-        pat=Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$",Pattern.CASE_INSENSITIVE);
+    public String getEmailIn(String strEmail) throws lessonTest.LoginExeption{
+        pat=Pattern.compile("^[A-Za-z0-9+_.-]+@[ a-zA-Z0-9.-]+$",Pattern.CASE_INSENSITIVE);
         mat=pat.matcher(strEmail);
         if (mat.matches()){
             return strEmail;
-        } else return null;
+        } else throw new lessonTest.LoginExeption();
     }
 
     public static void main(String[] args) throws lessonTest.LoginExeption {
