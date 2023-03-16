@@ -3,7 +3,6 @@ package org.example;
 import DAO.UserDao;
 import DAO.UserDaoImpl;
 import Service.UserService;
-import lessonTest.LoginExeption;
 
 import java.awt.*;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static DAO.UserDaoImpl.users;
+
 
 public class User {
     private String login;
@@ -25,6 +24,7 @@ public class User {
         if (login.equals(email)) {
             throw new lessonTest.LoginExeption("Логин не должен совпадать с адресом почты");
         }
+
     }
 
     public String getLogin() {
@@ -76,18 +76,16 @@ public class User {
         User misha = new User("Misha", "misha@mail.ru");
         User masha = new User("Masha", "masha@mail.ru");
         User dasha = new User("Dasha", "dasha@mail.ru");
-
-
-        System.out.println(UserDaoImpl.users);
-        users.add(user);
-        users.add(masha);
-        users.add(misha);
-        UserService userService=new UserService();
         UserDaoImpl userDao=new UserDaoImpl();
-        UserDaoImpl.findAllUsers();
+        userDao.addUser(user);
+        userDao.addUser(masha);
+        userDao.addUser(misha);
+        userDao.addUser(dasha);
 
-        System.out.println(userDao.getUserByName("sha"));
-        System.out.println(userService.checkUserExist(dasha));
+
+
+        userDao.findAllUsers();
+        System.out.println(userDao.getUserByName("Masha"));
 
 
     }

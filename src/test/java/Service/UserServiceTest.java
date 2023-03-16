@@ -28,7 +28,6 @@ class UserServiceTest {
     private UserService out;
 
     private static final String MISHA_TRUE = "Misha";
-    private static final String MASHA_FALSE = "Masha";
     private static final User MISHA_USER_TRUE;
     private static final User MISHA_USER_FALSE;
 

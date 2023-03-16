@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class UserDaoImpl implements UserDao {
 
-    public static List<User> users = new ArrayList<>();
+    public List<User> users = new ArrayList<>();
 
     public void addUser(User user) {
         if (!users.contains(user)) {
@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    public static void findAllUsers() {
+    public void findAllUsers() {
         List<String> list = users.stream().map(User::getLogin).toList();
         System.out.println(list);
     }

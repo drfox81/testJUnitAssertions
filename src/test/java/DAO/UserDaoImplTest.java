@@ -16,10 +16,7 @@ class UserDaoImplTest {
     private static final String MISHA_TRUE = "Misha";
     private static final String MASHA_FALSE = "Masha";
     private static final String MASHA_NULL= null;
-
     private static final User MISHA_USER_TRUE;
-
-
 
     static {
         try {
@@ -29,15 +26,20 @@ class UserDaoImplTest {
         }
     }
 
-    @BeforeAll
-    public static void initField() {
-        UserDaoImpl userDao = new UserDaoImpl();
-        userDao.addUser(MISHA_USER_TRUE);
+    private static final User MASHA_USER_TRUE;
+
+    static {
+        try {
+            MASHA_USER_TRUE = new User(MASHA_FALSE,"efew@er.ru");
+        } catch (LoginExeption e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     public void shouldGetUserByName() {
         UserDaoImpl userDao = new UserDaoImpl();
+        userDao.addUser(MISHA_USER_TRUE);
         assertEquals(MISHA_USER_TRUE, userDao.getUserByName(MISHA_TRUE));
     }
     @Test
@@ -48,9 +50,7 @@ class UserDaoImplTest {
     @Test
     public void shouldGetUserByNameNoNull() {
         UserDaoImpl userDao = new UserDaoImpl();
+        userDao.addUser(MISHA_USER_TRUE);
         assertNotNull(userDao.getUserByName(MISHA_TRUE));
     }
-
-
-
 }
